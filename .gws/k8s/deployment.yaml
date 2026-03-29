@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: angular-ssr
+  namespace: angular-ssr
+  labels:
+    app: angular-ssr
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: angular-ssr
+  template:
+    metadata:
+      labels:
+        app: angular-ssr
+    spec:
+      containers:
+      - name: angular-ssr
+        image: angular-ssr
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 4200
+          name: http
+          protocol: TCP
+      restartPolicy: Always
